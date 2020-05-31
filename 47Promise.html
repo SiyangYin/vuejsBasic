@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lange="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Title</title>
+</head>
+<body>
+
+
+<script>
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('a ')
+        }, 1000)
+    }).then(res => {
+        console.log(res, 'what are you doing here');
+        return new Promise(resolve => {
+            resolve(res + 'appended')
+        })
+    }).then(res => {
+        console.log(res, 'oh I see you are here now');
+        return new Promise(resolve => {
+            resolve(res + '222')
+        })
+    })
+
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('aaa')
+        }, 1000)
+    }).then(res => {
+        console.log("b")
+        return Promise.resolve(res + '111')
+    }).then(res => {
+        console.log("c")
+        console.log("c"+'222')
+	    
+        return res + '222'
+    }).catch(err => {
+        console.log(err)
+    })
+</script>
+</body>
+</html>

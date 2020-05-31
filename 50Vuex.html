@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lange="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Single view vuex</title>
+</head>
+<body>
+<div id="app">
+	<h2>{{message}}</h2>
+	<h2>{{counter}}</h2>
+	<button @click="counter++">+</button>
+	<button @click="counter--">-</button>
+</div>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app', // 用于要挂载的元素
+        data: {
+            message: 'why are you doing here?',
+            counter: 0
+        }
+    })
+
+</script>
+</body>
+</html>

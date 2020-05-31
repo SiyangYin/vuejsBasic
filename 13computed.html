@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<div id="app">
+  <h2>{{getFullName()}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>总价: {{totalPrice}}</h2>
+  <h2>总价: {{totalPrice2}}</h2>
+  <h2>总价: {{totalPrice3}}</h2>
+</div>
+<body>
+<script src="vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app', // 用于要挂载的元素
+    data: {
+      message: 'msg',
+      firstName: 'kyle',
+      lastName: 'xiong',
+      books:[
+        {id: 1,name:'计算机原理', price:100},
+        {id: 2,name:'数据库', price:110},
+        {id: 3,name:'网络', price:120},
+        {id: 4,name:'算法', price:130},
+        {id: 4,name:'康复指南', price:140},
+      ]
+    },
+    //计算属性, 只会调用一次when value doesn't change,
+    //缓存,性能稍好于methods
+    computed:{
+      fullName(){
+        return this.firstName +' '+ this.lastName
+      },
+      totalPrice(){
+        let total = 0
+        //java 8  stream api 归约，反复计算
+        for(let i=0; i < this.books.length;i++){
+          total += this.books[i].price
+        }
+        return total
+      },
+      totalPrice2(){
+        let total = 0
+        for(let i in this.books){
+          total += this.books[i].price;
+        }
+        return total
+      },
+      totalPrice3(){
+        let total = 0
+        for(let book of this.books){
+          total += book.price
+        }
+        return total
+      }
+    },
+    //由于多次调用，性能稍弱于computed
+    methods: {
+      getFullName() {
+        return this.firstName + ' ' + this.lastName
+      }
+    }
+
+  })
+
+</script>
+</body>
+</html>

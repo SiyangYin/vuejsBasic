@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<div id="app">
+  <h2>current number: {{counter}}</h2>
+  <button v-on:click="counter++">+</button>
+  <button v-on:click="counter--">-</button>
+  <button @click="add">+</button>
+  <button @click="sub">-</button>
+  <input type="text" @click="counter++">
+  <input type="text" @input="counter--">
+</div>
+<body>
+<script src="vue.js"></script>
+<script>
+  //proxy : this (global)
+  const app = new Vue({
+    el: '#app', // 用于要挂载的元素
+    data: {
+      counter: 0
+    },
+    methods: {
+      add(){
+        this.counter++
+      },
+      sub(){
+        this.counter--
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

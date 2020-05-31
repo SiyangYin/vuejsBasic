@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<div id="app">
+  <div v-if="books.length">
+    <table>
+      <thead>
+      <tr>
+        <th></th>
+        <th>Book</th>
+        <th>Publish Date</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(book,index) in books">
+        <!--      <td v-for="item in book">{{item}}</td>-->
+        <td>{{book.id}}</td>
+        <td>{{book.name}}</td>
+        <td>{{book.date}}</td>
+        <!--      <td>{{'$'+book.price.toFixed(2)}}</td>-->
+        <!--      <td>{{getFinalPrice(book.price)}}</td>-->
+        <td>{{book.price | showPrice}}</td>
+        <td>
+          <button @click="decrease(index)" :disabled="book.count <=1">-</button>
+          {{book.count}}
+          <button @click="increase(index)">+</button>
+        </td>
+        <td>
+          <button @click="removeRow(index)">remove</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h2>Price in Total {{totalPrice}}</h2>
+  </div>
+  <div v-else>Cart is empty</div>
+</div>
+<body>
+<script src="../vue.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>

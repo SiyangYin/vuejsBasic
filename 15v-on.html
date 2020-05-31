@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<div id="app">
+  <h2>{{counter}}</h2>
+  <h2>v-on:事件名="js片段或函数名"</h2>
+<!--  无参数可以不用括号引用方法-->
+  <button v-on:click="counter++">+</button>
+  <button v-on:click="counter--">-</button>
+  <button v-on:click="increase">+</button>
+  <button v-on:click="decrease">-</button>
+  <button @click="increase">+</button>
+  <button @click="decrease">-</button>
+
+  <button @click="btnClick('input')"></button>
+  <button @click="btnClick()"></button>
+<!--  event as parameter of default-->
+  <button @click="btnClick"></button>
+
+  <button @click="btnClick2('input',this.event)"></button>
+  <button @click="btnClick2('input',$event)"></button>
+<!--  bubble events,-->
+  <h2>bubble</h2>
+  <div @click="divClick">
+    inside div
+<!--    click button then stop , no more other events-->
+<!--    阻止事件传到父件-->
+    <button @click.stop="btnClick3">click</button>
+  </div>
+  <br>
+<!--  prevent event-->
+  <div>
+    <form action="www.baidu.com">
+      <input type="submit" value="submit" @click.prevent="submitClick">
+    </form>
+  </div>
+<!--  monitor keys on keyboard (keyboard events)-->
+  <input type="text" @keyup="keyUp">
+  <input type="text" @keyup.enter="keyUp">@keyup.13 //check ascii table
+  <input type="text" @keyup.once="keyUp">
+  <input type="button" value="click me!" @contextMenu.prevent="print">
+  <input type="button" value="click alt d !" @keyup.alt.68="print">
+</div>
+
+
+<body>
+<script src="vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app', // 用于要挂载的元素
+    data: {
+      message: 'msg',
+      counter: 0
+    },
+    methods:{
+      increase(){
+        this.counter++
+      },
+      decrease(){
+        this.counter--
+      },
+      //if no input it's undefined
+      btnClick(parameter) {
+        console.log(parameter)
+      },
+      btnClick2(parameter,event){
+        console.log('---',parameter,event)
+      },
+      btnClick3(){
+        console.log('dont touch me')
+      },
+      divClick(){
+        console.log('div got touched')
+      },
+      submitClick(){
+        console.log('submit clicked')
+      },
+      keyUp(){
+        console.log('key up up up')
+      },
+      cpnClick(){
+        console.log('cpn cpn')
+      },
+      print(){
+        // ev.preventDefault() //禁用默认事件,不用传参了
+        console.log('finally you clicked me')
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<!--visual dom in memory before real dom,not new one, reuse old one -->
+<div id="app">
+  <span v-if="isUser">
+<!--聚焦: label for will refer to input after clicking-->
+<!--    use key to distinguish -->
+    <label for="username">user account login</label>
+    <input type="text" id="username" placeholder="account" key='first'>
+  </span>
+  <span v-else>
+    <label for="email">user email login</label>
+    <input type="text" id="email" placeholder="email" key='second'>
+  </span>
+  <button @click="changeStatus">switch</button>
+</div>
+<body>
+<script src="vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app', // 用于要挂载的元素
+    data: {
+      isUser: true
+    },
+    methods:{
+      changeStatus(){
+        this.isUser = !this.isUser
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+<div id="app">
+  <!--  <img src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" alt="">-->
+  <img v-bind:src="imageURL" alt="">
+  <img :src="imageURL" alt="">
+
+  <!--  class bind-->
+  <h2 class="active">{{message}}</h2>
+  <h2 :class="active">{{message}}</h2>
+  <!--  <h2 v-bind:class="{calssname: boolean,classname: boolean}"></h2>-->
+  <!--  可以放对象在class里-->
+  <h2 v-bind:class="{active: isActive, line: isActive}">{{message}}</h2>
+  <h2 v-bind:class="getClasses()">{{message}}</h2>
+  <button v-on:click="btnClick">click</button>
+
+  <!--  array-->
+  <h2 :class="['active','line']">{{message}}</h2>
+  <h2 :class="getClasses2()">{{message}}</h2>
+
+</div>
+<body>
+<script src="vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app', // 用于要挂载的元素
+    data: {
+      message: 'msg',
+      imageURL: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80',
+      active: 'active',
+      isActive: true,
+      isLine: true
+    },
+    methods: {
+      btnClick() {
+        this.isActive = !this.isActive
+      },
+      getClasses() {
+        return {active: this.isActive, line: this.isLine}
+      },
+
+      getClasses2() {
+        return [this.active, this.line]
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

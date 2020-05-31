@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lange="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Title</title>
+</head>
+<body>
+
+
+<script>
+    <!--	multiple requests use promise is elegant-->
+    Promise.all([
+        new Promise(resolve => {
+            $ajax({
+                url: 'url1',
+                success: function (data) {
+                    resolve(data)
+                }
+            })
+        }),
+        new Promise(resolve => {
+            $ajax({
+                url: 'url2',
+                success: function (data) {
+                    resolve(data)
+                }
+            })
+        })
+    ]).then(results => {
+        // results[0]  => is first promise data
+        // results[1]  => is second promise data
+    })
+</script>
+</body>
+</html>

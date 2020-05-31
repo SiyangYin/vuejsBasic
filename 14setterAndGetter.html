@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<div id="app">
+  <h2>{{firstName+' '+ lastName}}</h2>
+  <h2>{{fullName}}</h2>
+</div>
+<body>
+<script src="vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app', // 用于要挂载的元素
+    data: {
+      message: 'msg',
+      firstName: 'kyle',
+      lastName: 'xiong'
+    },
+    computed: {
+      fullName: {
+        //setter 一般不开放，故省略 --> read only attribute
+        // set(){
+        // },
+        // set(parameter) {
+        //   // should pass a parameter
+        //   console.log('this would be called ' + parameter)
+        // },
+        set(parameter){
+          const names = parameter.split(' ')
+          this.firstName = names[1]
+          this.lastName = names[0]
+        },
+        get() {
+          return this.lastName + ' ' + this.firstName
+        }
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

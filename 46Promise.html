@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lange="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Basic Promise</title>
+</head>
+<body>
+
+
+<script>
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            //success callback then
+            resolve('what')
+            reject('error happens')
+        }, 1000)
+    }).then(data =>{
+        console.log(data);
+    },err=>{
+        console.log(err);
+    })
+	// then(fun1,fun2)   fun1 --> resolve fun2 --> reject
+
+</script>
+</body>
+</html>

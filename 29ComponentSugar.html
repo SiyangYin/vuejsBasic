@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+
+<div id="app">
+  <xiong></xiong>
+  <br>
+  <xikai></xikai>
+</div>
+<body>
+<script src="vue.js"></script>
+<script>
+
+  <!-- create component ,-->
+  Vue.component('xiong', {
+    template: `
+            <div>
+                <h2>title</h2>
+                <p>content1</p>
+                <p>content2</p>
+            </div>
+            `})
+  // const myComponent = ('xiong', {
+  //   template: `
+  //           <div>
+  //               <h2>title</h2>
+  //               <p>content1</p>
+  //               <p>content2</p>
+  //           </div>
+  //           `
+  // })
+  //thus can understand Vue is the root component
+  const app = new Vue({
+    el: '#app', // 用于要挂载的元素
+    data: {
+      message: 'msg'
+    },
+    components: {
+      // xiong: myComponent,
+      xikai: {
+        template: `
+         <div>
+            <h2>xikai title</h2>
+            <p>content1</p>
+            <p>content2</p>
+         </div>
+      `
+      }
+    }
+  })
+
+</script>
+</body>
+</html>
